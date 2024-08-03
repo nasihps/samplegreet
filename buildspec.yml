@@ -6,7 +6,7 @@ phases:
       - mvn clean install
       - echo Logging in to Amazon ECR...
       - aws --version
-      - REPOSITORY_URI=public.ecr.aws/h3d7y9d0/sample-project-ecr-gama
+      - REPOSITORY_URI=014498631063.dkr.ecr.ap-south-1.amazonaws.com/new-aws-sampleproject
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
@@ -26,7 +26,7 @@ phases:
       - printf '[{"name":"bootdocker","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - echo Writing image definitions file...
       # add your container name ie. ECR repository name which is also known as 
-      - DOCKER_CONTAINER_NAME=sample-project-ecr-gama    
+      - DOCKER_CONTAINER_NAME=new-aws-sampleproject    
       - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - echo $DOCKER_CONTAINER_NAME
       - echo printing imagedefinitions.json
