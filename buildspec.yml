@@ -25,6 +25,7 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"bootdocker","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - echo Writing image definitions file...
+      #Note -> keep ecr registry name and ecs containername same, if they are different then give ecs-task -> container name
       # add your container name ie. ECR repository name which is also known as 
       - DOCKER_CONTAINER_NAME=new-aws-sampleproject    
       - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
